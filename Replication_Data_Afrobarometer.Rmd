@@ -1,0 +1,336 @@
+---
+title: "Replication data"
+output: html_document
+date: "2024-11-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+## Importing the dataset
+
+```{r, echo=FALSE}
+library(foreign)
+afro_dataset <- read.spss("/Users/philtchoko/Desktop/Projects /afrobarometer_release-dataset_merge-34ctry_r8_en_2023-03-01.sav",to.data.frame = TRUE)
+```
+
+## Loading variables
+
+
+### Loading independent respondent variables
+
+```{r}
+# Loading respondent information variables 
+country <- afro_dataset$COUNTRY
+settlement_type <- factor(afro_dataset$URBRUR)
+age <- afro_dataset$Q1
+gender <- afro_dataset$Q101
+
+
+```
+
+### Loading dependent respondent variables(trust)
+
+```{r}
+# Where do survey respondents get their information from?
+
+friends_fam <- factor(afro_dataset$Q9) #Question specifically related to political matters "When you get together with your friends or family, would you say you discuss political matters:"
+television <- afro_dataset$Q55B
+newspaper <- afro_dataset$Q55C
+social_media <- afro_dataset$Q55E
+
+```
+
+### Creation of Trust Dataframe
+
+```{r}
+# creating a dataframe called trust_df paired with information variables 
+
+trust_df <- data.frame(
+  country <- country,
+  settlement_type <- settlement_type,
+  age <- age,
+  gender <- gender,
+  friends_fam <- friends_fam,
+  television <- television,
+  newspaper <- newspaper,
+  social_media <- social_media
+)
+
+
+
+
+age = as.numeric(trust_df$age)
+```
+
+```{r}
+#cleaning trust variable column names 
+
+colnames(trust_df) <- gsub("\\..*", "", colnames(trust_df))
+trust_df$settlement_type <- gsub("Semi-Urban","Urban", trust_df$settlement_type)
+
+# editing the scale for social media, television, and newspaper into "Never", "Frequently", and Occasionally
+
+trust_df$social_media <- gsub("Every day", "Frequently", trust_df$social_media)
+trust_df$social_media <- gsub("A few times a week", "Occasionally", trust_df$social_media)
+trust_df$social_media <- gsub("A few times a month", "Occasionally", trust_df$social_media)
+trust_df$social_media <- gsub("Less than once a month", "Never", trust_df$social_media)
+
+trust_df$television <- gsub("Every day", "Frequently", trust_df$television)
+trust_df$television <- gsub("A few times a week", "Occasionally", trust_df$television)
+trust_df$television <- gsub("A few times a month", "Occasionally", trust_df$television)
+trust_df$television <- gsub("Less than once a month", "Never", trust_df$television)
+
+trust_df$newspaper <- gsub("Every day", "Frequently", trust_df$newspaper)
+trust_df$newspaper <- gsub("A few times a week", "Occasionally", trust_df$newspaper)
+trust_df$newspaper <- gsub("A few times a month", "Occasionally", trust_df$newspaper)
+trust_df$newspaper <- gsub("Less than once a month", "Never", trust_df$newspaper)
+
+```
+
+
+```{r}
+
+#creating a dataframe only containing variables on news usage and  for further analysis 
+
+news_usage <- data.frame(
+  social_media <- social_media,
+  friends_fam <- friends_fam,
+  newspaper <- newspaper,
+  television <- television,
+  settlement_type <- settlement_type
+  
+)
+
+# cleaning column names in news_usage dataframe
+
+colnames(news_usage) <- gsub("\\..*", "", colnames(news_usage))
+news_usage$social_media <- gsub("Every day", "Frequently", news_usage$social_media)
+news_usage$social_media <- gsub("A few times a week", "Occasionally", news_usage$social_media)
+news_usage$social_media <- gsub("A few times a month", "Occasionally", news_usage$social_media)
+news_usage$social_media <- gsub("Less than once a month", "Never", news_usage$social_media)
+
+news_usage$television <- gsub("Every day", "Frequently", news_usage$television)
+news_usage$television <- gsub("A few times a week", "Occasionally", news_usage$television)
+news_usage$television <- gsub("A few times a month", "Occasionally", news_usage$television)
+news_usage$television <- gsub("Less than once a month", "Never", news_usage$television)
+
+news_usage$newspaper <- gsub("Every day", "Frequently", news_usage$newspaper)
+news_usage$newspaper <- gsub("A few times a week", "Occasionally", news_usage$newspaper)
+news_usage$newspaper <- gsub("A few times a month", "Occasionally", news_usage$newspaper)
+news_usage$newspaper <- gsub("Less than once a month", "Never", news_usage$newspaper)
+news_usage$settlement_type <- gsub("Semi-Urban","Urban", news_usage$settlement_type)
+
+
+```
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+filtered_news_usage_urban <- news_usage |>
+  filter(settlement_type == 'Urban')
+
+filtered_news_usage_rural <- news_usage |>
+  filter(settlement_type == 'Rural')
+
+#cleaning column names 
+
+filtered_news_usage_rural <- filtered_news_usage_rural |>
+  filter(!social_media %in% c("Don't Know", "Refused"))
+filtered_news_usage_rural <- filtered_news_usage_rural |>
+  filter(!friends_fam %in% c("Don't Know", "Refused"))
+filtered_news_usage_rural <- filtered_news_usage_rural |>
+  filter(!newspaper %in% c("Don't Know", "Refused"))
+filtered_news_usage_rural <- filtered_news_usage_rural |>
+  filter(!television %in% c("Don't Know", "Refused"))
+
+
+filtered_news_usage_urban <- filtered_news_usage_urban |>
+  filter(!social_media %in% c("Don't Know", "Refused"))
+filtered_news_usage_urban <- filtered_news_usage_urban |>
+  filter(!friends_fam %in% c("Don't Know", "Refused"))
+filtered_news_usage_urban <- filtered_news_usage_urban |>
+  filter(!newspaper %in% c("Don't Know", "Refused"))
+filtered_news_usage_urban <- filtered_news_usage_urban |>
+  filter(!television %in% c("Don't Know", "Refused"))
+
+#cleaning additional response valuees
+
+news_urban <- news_usage_urban |>
+  filter(!Response %in% c("Don't Know", "Refused"))
+news_rural <- news_usage_rural |>
+  filter(!Response %in% c("Don't Know", "Refused"))
+
+news_rural$Response = factor(news_rural$Response, levels = c("Never", "Occasionally", "Frequently"))
+news_urban$Response = factor(news_urban$Response, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_rural$social_media = factor(filtered_news_usage_rural$social_media, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_rural$friends_fam = factor(filtered_news_usage_rural$friends_fam, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_rural$television = factor(filtered_news_usage_rural$television, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_rural$newspaper = factor(filtered_news_usage_rural$newspaper, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_urban$social_media = factor(filtered_news_usage_urban$social_media, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_urban$television = factor(filtered_news_usage_urban$television, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_urban$friends_fam = factor(filtered_news_usage_urban$friends_fam, levels = c("Never", "Occasionally", "Frequently"))
+filtered_news_usage_urban$newspaper = factor(filtered_news_usage_urban$newspaper, levels = c("Never", "Occasionally", "Frequently"))
+
+
+
+
+```
+
+
+```{r}
+library(ggplot2)
+library(scales) 
+
+# Plot
+ggplot(filtered_news_usage_rural, aes(x = social_media)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Social Media? (Rural)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+ library(ggplot2)
+ ggplot(filtered_news_usage_rural, aes(x = friends_fam)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Friends and Family? (Rural)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+ library(ggplot2)
+  ggplot(filtered_news_usage_rural, aes(x = newspaper)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Newspaper? (Rural)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+library(ggplot2)
+  ggplot(filtered_news_usage_rural, aes(x = television)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Television? (Rural)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+library(ggplot2)
+  ggplot(filtered_news_usage_urban, aes(x = social_media)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Social Media? (Urban)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+  
+```
+
+```{r}
+library(ggplot2)
+  ggplot(filtered_news_usage_urban, aes(x = friends_fam)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Friends and Family? (Urban)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+ library(ggplot2)
+  ggplot(filtered_news_usage_urban, aes(x = newspaper)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Newspaper? (Urban)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+```{r}
+ library(ggplot2)
+  ggplot(filtered_news_usage_urban, aes(x = television)) + 
+    geom_bar(position = position_dodge(), aes(y = ..count../sum(..count..))) + # Calculates proportions for each value 
+    scale_y_continuous(labels = percent_format(), limits = c(0, 1)) +
+    theme_linedraw() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1)
+    ) +
+    labs(
+        x = "Consumption Frequency", 
+        y = "Percentage of Respondents",
+        title = "How often do you get news from the following sources: Television? (Urban)", 
+        caption = "Source: Interview Responses via Afrobarometer Survey Dataset",
+        fill = "Location Type"
+    )
+```
+
+
+
+
+
+
+
