@@ -18,31 +18,39 @@ behavior and social cohesion.
 
       A dataset from a survey containing African attitudes, experiences, and aspirations.
 
-      Merged(All countries) Round 9 Data of Afrobarometer:  https://www.afrobarometer.org/wp-content/uploads/2025/06/R9.Merge_39ctry.20Nov23.final_.release_Updated.4Jun25-3.sav
-
+      Merged(All countries) Round 8 Data of Afrobarometer:  https://www.afrobarometer.org/wp-content/uploads/2025/07/R8_Merge-Codebook_28May24.final_.pdf
+      
   Data Collection:
 
       Gathered important independent variables:
 
-        country -> 
-        settlement_type ->
-        age ->
-        gender -> 
-        integration -> 
+        country -> Country of respondent 
+        settlement_type -> "Do you come from a Rural or Urban area?" Values: 1, 2, 3 (Rural, Urban, Semi-Urban)
+        age -> Age of respondent Values: 18-70
+        gender -> Gender of respondent Values: 1 or 2( Male, Female)
+        
 
       Dependent variables:
 
-        friends_fam -> 
-        newspaper ->
-        social_media ->
-        television ->
+        friends_fam -> "When you get together with your friends or family, would you say you discuss political matters:" Values: 0-2, 8, 9, -1 (Never, Occasionally, Frequently,     Refused, Don't Know, Missing)
+        newspaper -> "How often do you get news from the following sources: print newspapers?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        social_media ->  "How often do you get news from the following sources: social media such as Facebook, Twitter, WhatsApp, or others?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        television -> "How often do you get news from the following sources: television?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
         
+  Data Cleaning
+
+       - Created a dataframe containing the independent and dependent variables -> trust_df(how much trust do people of varying identities place in different news forms?)
+       - Created a dataframe containing uniquely 
+       - Replaced "Semi-Urban" with "Urban"
+       - Changed the scale for newspaper, social_media, and television to match that of friends_fam. ("Every day" -> Frequently, "A few times a week" and "A few times a month" -> "Occasionally", "Less than once a month" -> "Never"
+       
         
 
 
 ## Methodology
 
-   Graphs
+   Heatmaps
+   
     
 
 
