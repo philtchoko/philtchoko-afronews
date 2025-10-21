@@ -32,17 +32,30 @@ behavior and social cohesion.
 
       Dependent variables:
 
-        friends_fam -> "When you get together with your friends or family, would you say you discuss political matters:" Values: 0-2, 8, 9, -1 (Never, Occasionally, Frequently,     Refused, Don't Know, Missing)
-        newspaper -> "How often do you get news from the following sources: print newspapers?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
-        social_media ->  "How often do you get news from the following sources: social media such as Facebook, Twitter, WhatsApp, or others?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
-        television -> "How often do you get news from the following sources: television?" Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        friends_fam -> "When you get together with your friends or family, would you say you discuss political matters:" 
+        Values: 0-2, 8, 9, -1 (Never, Occasionally, Frequently,     Refused, Don't Know, Missing)
+        newspaper -> "How often do you get news from the following sources: print newspapers?" 
+        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        social_media ->  "How often do you get news from the following sources: social media such as Facebook, Twitter, WhatsApp, or others?" 
+        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        television -> "How often do you get news from the following sources: television?" 
+        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
+        integration -> "Which of the following statements is closest to your view? Choose Statement 1 or Statement 2. 
+        Statement 1: Communities are stronger when they are made up of people from different ethnic groups, races, or religions. 
+        Statement 2: Communities are stronger when they are made up of people who are similar to each other, that is, people from the same ethnic group, race, or religion.
+        Values: 1-5, 8, 9, -1 
+        Value Labels: 1=Agree very strongly with Statement 1, 2=Agree with Statement 1, 3=Agree with Statement 2, 4=Agree very strongly with Statement 2, 
+        5=Agree with neither, 8=Refused, 9=Don’t know, -1= Missing. 
+        
         
   Data Cleaning
 
        - Created a dataframe containing the independent and dependent variables -> trust_df(how much trust do people of varying identities place in different news forms?)
        - Created a dataframe containing uniquely 
        - Replaced "Semi-Urban" with "Urban"
-       - Changed the scale for newspaper, social_media, and television to match that of friends_fam. ("Every day" -> Frequently, "A few times a week" and "A few times a month" -> "Occasionally", "Less than once a month" -> "Never"
+       - Changed the scale for newspaper, social_media, and television to match that of friends_fam. 
+       ("Every day" -> Frequently, "A few times a week" and "A few times a month" -> "Occasionally", "Less than once a month" -> "Never")
+       - Changed the scale for integration from "Agree very strongly with Statement 1, 2=Agree with Statement 1" to "Diverse" and "Similar"
        
         
 
