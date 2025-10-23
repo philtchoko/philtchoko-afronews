@@ -103,7 +103,7 @@ Based on the results, it may seem that, initially, there is more belief in the p
 
 
 
-### CONCLUSION
+### Conclusion
 
 
 Information networks play a vital role in shaping the values, beliefs, and perceptions of people worldwide. This research sought to understand how these networks influence media consumption and perceptions of in-groups and out-groups. By analyzing data from the Afrobarometer dataset, we identified key differences in how rural and urban communities in Africa engage with news media. Urban respondents were more likely to consume news through social media, while rural respondents relied more on newspapers and discussions with family and friends. These patterns illustrate how settlement type influences engagement with information networks, offering insight into how different communities access and interpret media. 
