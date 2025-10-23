@@ -64,6 +64,14 @@ behavior and social cohesion.
 
    Heatmaps
    
+
+   <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/a2c362f0-fe9b-461c-9d59-7109e0e199dd" />
+
+
+
+   <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/ff2d51c2-131c-49b4-ae16-502f9720a387" />
+
+
     
 
 
@@ -72,5 +80,34 @@ behavior and social cohesion.
 ## Results
 
   Graphs
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/80cc13c8-4f9d-468e-af9d-e76037ec78a0" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/f23588a5-4c2f-48cf-b36a-d21b5c9ef363" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/cd71f998-f655-4bce-81f0-1f41ebeb44ac" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/d222d03d-bc87-4e73-8771-261b4d644315" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/15563447-8397-49b4-a442-5633b3356540" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/f9afdfca-da88-44b6-b49a-79e28d89f133" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/5d342480-3a90-4e5d-9874-1c46afe1e868" />
+
+
+  <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/f725f93f-f45b-4496-8de9-2ce6d78e6d2d" />
+
+
+
+  
+
+
 
 ## References
