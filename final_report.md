@@ -112,14 +112,7 @@ In conclusion, this research highlights the powerful role of information network
 
 
 
-
-
-
-
-
-
-
-
+### Appendix
 			
 Carlson, Taylor N. Through the Grapevine. University of Chicago Press, 2024.
 Rogers, Richard. “Marginalizing the Mainstream: How Social Media Privilege Political   Information.” Frontiers, Frontiers, 23 June 2021,  www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2021.689036/full. 
