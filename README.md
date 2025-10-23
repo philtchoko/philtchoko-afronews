@@ -60,7 +60,7 @@ behavior and social cohesion.
         
 
 
-## Methodology
+## Results
 
    Heatmaps
    
@@ -72,12 +72,6 @@ behavior and social cohesion.
    <img width="1400" height="865" alt="image" src="https://github.com/user-attachments/assets/ff2d51c2-131c-49b4-ae16-502f9720a387" />
 
 
-    
-
-
-   
-  
-## Results
 
   Graphs
 
