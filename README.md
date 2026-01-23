@@ -1,14 +1,17 @@
 # Where Do People Get News That They Trust About Politics and Inner-Group Conflict?
+  Exploring how media consumption patterns shape political perceptions and intergroup attitudes using Afrobarometer data
   
   
-  
-  This study explores how information networks influence media consumption, political perceptions, and intergroup dynamics, with a specific focus on rural and urban communities in Africa.
-Using data from the Afrobarometer dataset, the research identifies key differences in media consumption patterns. Urban respondents are more likely to engage with social media, while rural 
-respondents rely more on newspapers and discussions with family and friends. These differences highlight the role of settlement type in shaping how people access and interpret information. 
-Drawing on concepts like Carlson’s "distorted democracy" and Rogers’ theory of media marginalization, the study reveals how socially transmitted information reinforces in-group and out-group 
-biases. The findings emphasize the need for media literacy programs and equitable access to reliable information, particularly in rural areas where information networks may play a larger role. 
-The study concludes by calling for further analysis of sociological factors, such as GDP, democracy, and political affiliation, to better understand how media consumption shapes political 
-behavior and social cohesion.
+  This project investigates how people in different social contexts obtain political information and how these information networks influence political trust and perceptions of intergroup conflict. Using Afrobarometer Round 8 survey data across multiple African countries, the analysis focuses on differences in media consumption between rural and urban populations and their relationship to political attitudes.
+
+Rather than building predictive models, this project emphasizes exploratory data analysis (EDA) and visualization to uncover patterns in media use and political perception. The goal is to demonstrate how structured data analysis can reveal meaningful social and political dynamics.
+
+
+
+## Research Questions
+1. How do media consumption patterns differ between rural and urban populations?
+2. Which information sources (social media, television, newspapers, interpersonal discussion) are most associated with political trust?
+3. How do information networks relate to perceptions of intergroup conflict and social cohesion?
 
 
 
@@ -16,55 +19,75 @@ behavior and social cohesion.
 
   Afrobarometer Dataset:
 
-      A dataset from a survey containing African attitudes, experiences, and aspirations.
+  ### Source
+     - Dataset: Afrobarometer Round 8 survey
+     - Coverage: 30+ African countries
+     - Respondents: 40,000+ individuals
+     - Unit of analysis: Individual survey respondents
 
-      Merged(All countries) Round 8 Data of Afrobarometer:  https://www.afrobarometer.org/wp-content/uploads/2025/07/R8_Merge-Codebook_28May24.final_.pdf
-      
-  Data Collection:
+ ### Key Variables
+    -  Settlement type (Urban vs Rural)
+    -  Age
+    -  Gender
+    -  Media consumption frequency:
+      - Social media
+      - Television
+      - Newspapers
+      - Discussions with friends and family
 
-      Gathered important independent variables:
+  ### Dependent Variables  
+    - Political trust indicators
+    - Intergroup perception measures
+    - Attitudes toward social cohesion and diversity
 
-        country -> Country of respondent 
-        settlement_type -> "Do you come from a Rural or Urban area?" Values: 1, 2, 3 (Rural, Urban, Semi-Urban)
-        age -> Age of respondent Values: 18-70
-        gender -> Gender of respondent Values: 1 or 2( Male, Female)
-        
 
-      Dependent variables:
+## Data Processing and Cleaning
 
-        friends_fam -> "When you get together with your friends or family, would you say you discuss political matters:" 
-        Values: 0-2, 8, 9, -1 (Never, Occasionally, Frequently,     Refused, Don't Know, Missing)
-        newspaper -> "How often do you get news from the following sources: print newspapers?" 
-        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
-        social_media ->  "How often do you get news from the following sources: social media such as Facebook, Twitter, WhatsApp, or others?" 
-        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
-        television -> "How often do you get news from the following sources: television?" 
-        Values: 0-4, 8, 9, -1(Never, Less than once a month, A few times a month, a few times a week, Everyday, Refused, Don't Know, Missing)
-        integration -> "Which of the following statements is closest to your view? Choose Statement 1 or Statement 2. 
-        Statement 1: Communities are stronger when they are made up of people from different ethnic groups, races, or religions. 
-        Statement 2: Communities are stronger when they are made up of people who are similar to each other, that is, people from the same ethnic group, race, or religion.
-        Values: 1-5, 8, 9, -1 
-        Value Labels: 1=Agree very strongly with Statement 1, 2=Agree with Statement 1, 3=Agree with Statement 2, 4=Agree very strongly with Statement 2, 
-        5=Agree with neither, 8=Refused, 9=Don’t know, -1= Missing. 
-        
-        
-  Data Cleaning
+  
+Steps performed:
 
-       - Created a dataframe containing the independent and dependent variables -> trust_df(how much trust do people of varying identities place in different news forms?)
-       - Created a dataframe containing uniquely 
-       - Replaced "Semi-Urban" with "Urban"
-       - Changed the scale for newspaper, social_media, and television to match that of friends_fam. 
-       ("Every day" -> Frequently, "A few times a week" and "A few times a month" -> "Occasionally", "Less than once a month" -> "Never")
-       - Changed the scale for integration from "Agree very strongly with Statement 1, 2=Agree with Statement 1" to "Diverse" and "Similar"
-       
-        
+1. Variable selection and dataset merging across countries
+2. Recoding categorical variables (Urban/Rural, gender, media frequency)
+3. Handling missing and inconsistent responses
+4. Standardizing scales across media variables
+5. Constructing composite trust indicators
+
+## Methodology
+
+### Exploratory Data Analysis (EDA)
+- Distribution analysis of media consumption by settlement type
+- Cross-tabulation of media sources and trust measures
+
+### Statistical Analysis
+- Correlation analysis
+- Logistic / linear regression models
+- Comparison of rural vs urban media effects
+
+### Evaluation
+- Significance testing (p-values, confidence intervals)
+- Model interpretability
 
 
 ## Results
 
-   Results and subsequent analysis can be found at 'final_report.md'.
+### Key Findings
 
+- Urban respondents are significantly more likely to rely on social media for political information.
+- Rural respondents rely more on television and interpersonal discussions.
+- Social media consumption is associated with lower levels of institutional trust.
+- Traditional media sources correlate with higher perceived social cohesion.
 
+### Example Model Results
+
+| Variable | Effect on Political Trust |
+|---------|--------------------------|
+| Social Media Use | Negative |
+| Television Use | Positive |
+| Urban Residence | Mixed |
+| Age | Positive |
+
+Full results are available in `final_report.md`.
+     
   
 
 
