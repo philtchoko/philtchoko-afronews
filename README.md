@@ -60,11 +60,9 @@ Steps performed:
 
 ### Statistical Analysis
 - Correlation analysis
-- Logistic / linear regression models
 - Comparison of rural vs urban media effects
 
 ### Evaluation
-- Significance testing (p-values, confidence intervals)
 - Model interpretability
 
 
