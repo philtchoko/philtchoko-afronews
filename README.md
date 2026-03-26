@@ -70,7 +70,7 @@ Steps performed:
 
 ### Key Findings
 
-- Urban respondents are significantly more likely to rely on social media for political information.
+- Urban respondents are more likely to rely on social media for political information.
 - Rural respondents rely more on television and interpersonal discussions.
 - Social media consumption is associated with lower levels of institutional trust.
 - Traditional media sources correlate with higher perceived social cohesion.
