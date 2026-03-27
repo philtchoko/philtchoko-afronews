@@ -59,7 +59,6 @@ Steps performed:
 - Cross-tabulation of media sources and trust measures
 
 ### Statistical Analysis
-- Correlation analysis
 - Comparison of rural vs urban media effects
 
 ### Evaluation
